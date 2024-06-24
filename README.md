@@ -1,2 +1,3 @@
-# bonne_app_petit_jan_taras
-Pennylane Recruitment Task - Bonne App Petit recipie finder app
+# Bonne App Petit by Jan Taras
+Pennylane Recruitment Task
+

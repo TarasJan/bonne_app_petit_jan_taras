@@ -1,16 +1,16 @@
 bonne_app_api/*.rbc
 bonne_app_api/capybara-*.html
 bonne_app_api/.rspec
-bonne_app_api//public/system
-bonne_app_api//coverage/
-bonne_app_api//spec/tmp
+bonne_app_api/public/system
+bonne_app_api/coverage/
+bonne_app_api/spec/tmp
 bonne_app_api/*.orig
 bonne_app_api/rerun.txt
 bonne_app_api/pickle-email-*.html
 
 # Ignore all logfiles and tempfiles.
-bonne_app_api//log/*
-bonne_app_api//tmp/*
+bonne_app_api/log/*
+bonne_app_api/tmp/*
 !bonne_app_api/log/.keep
 !bonne_app_api/tmp/.keep
 
@@ -27,14 +27,14 @@ bonne_app_api/.env
 bonne_app_api/.env*.local
 
 ## Environment normalization:
-bonne_app_api//.bundle
-bonne_app_api//vendor/bundle
+bonne_app_api/.bundle
+bonne_app_api/vendor/bundle
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
 # if using bower-rails ignore default bower_components path bower.json files
-bonne_app_api//vendor/assets/bower_components
+bonne_app_api/vendor/assets/bower_components
 bonne_app_api/*.bowerrc
 bonne_app_api/bower.json
 
@@ -45,6 +45,6 @@ bonne_app_api/.powenv
 bonne_app_api/.byebug_history
 
 # Ignore uploaded files in development
-bonne_app_api//storage/*
-!bonne_app_api//storage/.keep
-bonne_app_api//public/uploads
+bonne_app_api/storage/*
+!bonne_app_api/storage/.keep
+bonne_app_api/public/uploads

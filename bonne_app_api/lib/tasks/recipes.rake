@@ -29,17 +29,4 @@ namespace :recipes do
   task :clear, :environment do |_t, _args|
     Dir.glob('tmp/recipes*') { |f| File.delete(f) }
   end
-
-  desc 'Generate Database seeds from downloaded files'
-  task :generate_seeds, :environment do |t, args|
-    begin
-      file = File.read("tmp/recipes.json")
-      data = JSON.parse(file)
-    rescue => error
-      abort(error) 
-    end
-    # TODO: 
-
-    
-  end
 end

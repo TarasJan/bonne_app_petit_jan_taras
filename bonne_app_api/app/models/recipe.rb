@@ -6,7 +6,8 @@ class Recipe < ApplicationRecord
   validates :ratings, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
   validates :cook_time, :prep_time, numericality: { greater_than_or_equal_to: 0 }
 
-  def self.importable_columns
-    column_names.excluding('id', 'created_at', 'updated_at')
-  end
+  has_many :ingredients
+  has_many :products, through: :ingredients
+
+  accepts_nested_attributes_for :ingredients
 end

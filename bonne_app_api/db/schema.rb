@@ -12,10 +12,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_625_103_526) do
+ActiveRecord::Schema[7.1].define(version: 20_240_625_154_326) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
+
+  create_table 'ingredients', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.integer 'unit'
+    t.float 'amount'
+    t.uuid 'product_id', null: false
+    t.uuid 'recipe_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['product_id'], name: 'index_ingredients_on_product_id'
+    t.index %w[recipe_id product_id], name: 'index_ingredients_on_recipe_id_and_product_id', unique: true
+    t.index ['recipe_id'], name: 'index_ingredients_on_recipe_id'
+  end
+
+  create_table 'products', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['name'], name: 'index_products_on_name', unique: true
+  end
 
   create_table 'recipes', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'title'
@@ -29,4 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_625_103_526) do
     t.datetime 'updated_at', null: false
     t.index %w[title author], name: 'index_recipes_on_title_and_author', unique: true
   end
+
+  add_foreign_key 'ingredients', 'products'
+  add_foreign_key 'ingredients', 'recipes'
 end

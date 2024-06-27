@@ -8,5 +8,14 @@ FactoryBot.define do
     ratings { Faker::Number.between(from: 0.0, to: 5.0) }
     author { Faker::Name.name }
     image_url { Faker::Internet.url(host: 'example.com') }
+
+    trait :with_ingredients do
+      transient do
+        ingredient_count { 5 }
+      end
+      after(:build) do |recipe, evaluator|
+        recipe.ingredients = build_list(:ingredient, evaluator.ingredient_count)
+      end
+    end
   end
 end

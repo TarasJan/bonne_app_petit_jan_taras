@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :ingredient do
-    unit { 1 }
+    unit { Unit::AVAILABLE_UNITS.sample }
     amount { Faker::Number.between(from: 0.0, to: 50.0) }
     product
     recipe

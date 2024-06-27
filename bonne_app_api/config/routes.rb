@@ -16,6 +16,12 @@ Rails.application.routes.draw do
           get :search
         end
       end
+
+      resources :products do
+        collection do
+          get :most_common
+        end
+      end
     end
   end
 end

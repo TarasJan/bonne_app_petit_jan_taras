@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import { PrimeReactProvider } from 'primereact/api';
 
 import Header from '../Header/Header';

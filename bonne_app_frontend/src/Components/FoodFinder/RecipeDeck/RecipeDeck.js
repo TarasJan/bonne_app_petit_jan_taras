@@ -1,13 +1,10 @@
 import React from "react";
 import { Divider } from 'primereact/divider';
 import RecipeCard from "./RecipeCard/RecipeCard";
-import WelcomePanel from "./WelcomePanel/WelcomeCard";
+import WelcomePanel from "./WelcomePanel/WelcomePanel";
 
 
-// <RecipeCard title="Banana Bread" author="Ada Wong" prepTime={20}/>
-// <RecipeCard title="Apple Pie" author= "Dan Smith" prepTime={45}/>
-
-export default function RecipeDeck({recipes}) {
+export default function RecipeDeck({recipes, userFood}) {
   if(recipes.length == 0) {
    return(<WelcomePanel />)
   } else {
@@ -15,7 +12,7 @@ export default function RecipeDeck({recipes}) {
       <>
         { recipes.map(recipe =>
         <>
-        <RecipeCard recipe= {recipe}/>
+        <RecipeCard recipe={recipe} userFood={userFood} />
         <Divider/>
         </> 
         ) }

@@ -21,7 +21,7 @@ RSpec.describe "Api::V1::Products", type: :request do
 
       expect(response).to have_http_status(:ok)
       expect(parsed_response.size).to eq(10)
-      expect(parsed_response.pluck("count_all").sum).to eq(40)
+      expect(parsed_response.pluck("mentions").sum).to eq(40)
     end
 
     context "with limit param" do
@@ -30,7 +30,7 @@ RSpec.describe "Api::V1::Products", type: :request do
 
         expect(response).to have_http_status(:ok)
         expect(parsed_response.size).to eq(5)
-        expect(parsed_response.pluck("count_all").sum).to eq(25)
+        expect(parsed_response.pluck("mentions").sum).to eq(25)
       end
     end
   end

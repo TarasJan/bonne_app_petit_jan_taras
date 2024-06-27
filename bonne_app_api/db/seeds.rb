@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-SOURCE_FILE = 'tmp/recipes.json'
+SOURCE_FILE = 'tmp/recipes-100.json'
 
 def read_source_data!
   file = File.read(SOURCE_FILE)

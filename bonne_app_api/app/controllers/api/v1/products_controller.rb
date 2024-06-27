@@ -1,6 +1,6 @@
 class Api::V1::ProductsController < ApplicationController
   def most_common
-    render json: ProductRepository.most_common(limit)
+    render json: ProductRepository.most_common(limit), each_serializer: ProductSerializer
   end
 
   private

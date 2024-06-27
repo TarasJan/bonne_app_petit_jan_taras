@@ -6,8 +6,8 @@ class ProductRepository
     Product
       .joins(:ingredients)
       .group('products.id')
-      .select('products.*, COUNT(*) as count_all')
-      .order(count_all: :desc)
+      .select('products.*, COUNT(*) as mentions')
+      .order(mentions: :desc)
       .limit(limit)
   end
 end

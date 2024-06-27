@@ -13,8 +13,8 @@ gem 'pg', '~> 1.1'
 # Active Record Import to load data read from JSON into DB
 gem 'activerecord-import'
 
-# JSON:API Serializer for shaping API
-gem 'jsonapi-serializer'
+# Serializer for shaping API
+gem "active_model_serializers"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '>= 5.0'

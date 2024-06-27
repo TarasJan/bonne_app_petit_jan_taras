@@ -5,4 +5,6 @@ class Ingredient < ApplicationRecord
 
   belongs_to :product
   belongs_to :recipe
+
+  delegate :name, to: :product
 end

@@ -9,6 +9,8 @@ export default function FoodFinder() {
   const [foodOptions, setFoodOptions] = useState([]);
   const [userFood, setUserFood] = useState([]);
   const [recipes, setRecipes] = useState([])
+  const [minimalRating, setMinimalRating] = useState(0);
+  const [onlyCold, setOnlyCold] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,8 +29,13 @@ export default function FoodFinder() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const query = userFood.map(food => food.id).join()
-        const response = await fetch(`http://127.0.0.1:3001/api/v1/recipes/search?product_ids=${query}`);
+        const params = new URLSearchParams({
+          product_ids: userFood.map(food => food.id).join(),
+          cold: onlyCold,
+          min_rating: minimalRating
+        })
+
+        const response = await fetch(`http://127.0.0.1:3001/api/v1/recipes/search?${params.toString()}`);
         const result = await response.json();
         setRecipes(result);
       } catch (error) {
@@ -38,13 +45,20 @@ export default function FoodFinder() {
 
     fetchData();
 
-  }, [userFood]);
+  }, [userFood, onlyCold, minimalRating]);
 
   return(
     <>
-      <FoodSelect food = {foodOptions} userFood={userFood} setUserFood={setUserFood}/>
+      <FoodSelect 
+        food = {foodOptions} 
+        userFood={userFood} 
+        setUserFood={setUserFood}
+        setOnlyCold={setOnlyCold}
+        setMinimalRating={setMinimalRating}
+        minimalRating={minimalRating}
+      />
       <Divider />
-      <RecipeDeck recipes={recipes} />
+      <RecipeDeck recipes={recipes} userFood={userFood} />
     </>
   )
 }

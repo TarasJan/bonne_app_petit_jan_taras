@@ -3,7 +3,7 @@
 class CreateIngredients < ActiveRecord::Migration[7.1]
   def change
     create_table :ingredients, id: :uuid do |t|
-      t.integer :unit
+      t.string :unit
       t.float :amount
       t.belongs_to :product, null: false, foreign_key: true, type: :uuid
       t.belongs_to :recipe, null: false, foreign_key: true, type: :uuid

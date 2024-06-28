@@ -1,7 +1,11 @@
 .App {
   text-align: center;
-  padding: 0px 20%;
 }
 
+@media screen and (min-width: 800px) {
+  .App {
+    padding: 0px 20%;
+  }
+}
 
 

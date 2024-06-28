@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-SOURCE_FILE = 'tmp/recipes-100.json'
+SOURCE_FILE = 'tmp/recipes.json'
 
-def read_source_data!
+
+# App hosted on Fly.io offers a subset of the whole data file
+def read_source_data!(limit: 1000)
   file = File.read(SOURCE_FILE)
-  JSON.parse(file)
+  JSON.parse(file).first(limit)
 rescue StandardError => e
   abort(e)
 end
@@ -17,7 +19,7 @@ unless File.exist?(SOURCE_FILE)
   Rake::Task['recipes:download'].invoke
 end
 
-data = read_source_data!
+data = read_source_data!(limit: 1000)
 
 Rails.logger.info('Seeding Products...')
 

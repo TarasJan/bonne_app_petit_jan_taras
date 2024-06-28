@@ -6,7 +6,7 @@ class Api::V1::ProductsController < ApplicationController
   private
 
   def limit
-    permitted_params["limit"] || 10
+    permitted_params["limit"] || 100
   end
 
   def permitted_params

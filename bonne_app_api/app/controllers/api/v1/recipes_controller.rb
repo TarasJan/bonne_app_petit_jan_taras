@@ -4,7 +4,7 @@ module Api
   module V1
     class RecipesController < ApplicationController
       def search
-        render json: recipes, status: recipes.empty? ? 404 : 200
+        render json: recipes.limit(20), status: recipes.empty? ? 404 : 200
       end
 
       private

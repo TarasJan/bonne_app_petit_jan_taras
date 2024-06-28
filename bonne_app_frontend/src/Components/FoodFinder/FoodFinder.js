@@ -15,7 +15,7 @@ export default function FoodFinder() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:3001/api/v1/products/most_common');
+        const response = await fetch('http://127.0.0.1:3001/api/v1/products');
         const result = await response.json();
         setFoodOptions(result);
       } catch (error) {

@@ -7,6 +7,7 @@ class RecipeRepository
       .joins(:ingredients)
       .where('ingredients.product_id' => product_ids)
       .group('recipes.id')
+      .includes(:products)
       .order(matches: :desc)
   end
 end

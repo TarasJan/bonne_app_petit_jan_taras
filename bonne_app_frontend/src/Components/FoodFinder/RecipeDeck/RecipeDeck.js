@@ -5,7 +5,7 @@ import WelcomePanel from "./WelcomePanel/WelcomePanel";
 
 
 export default function RecipeDeck({recipes, userFood}) {
-  if(recipes.length == 0) {
+  if(recipes.length === 0) {
    return(<WelcomePanel />)
   } else {
     return(

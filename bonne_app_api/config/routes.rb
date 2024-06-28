@@ -17,11 +17,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :products do
-        collection do
-          get :most_common
-        end
-      end
+      resources :products, only: :index
     end
   end
 end

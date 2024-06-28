@@ -29,7 +29,6 @@ sudo apt-get install wget gzip
 
 For installation of Postgres on Ubuntu consult the official [Ubuntu docs](https://ubuntu.com/server/docs/install-and-configure-postgresql) 
 
-
 First time setup
 ```shell
 cd bonne_app_api
@@ -90,6 +89,8 @@ in the end hosted by Rails as SPA.
 ### Database
 Database structure is a simple many-to-many solution with 3 tables in place.
 
+![image schema](./bonne_app_api/docs/db/schema.png)
+
 `Recipe` as the representation of recipe
 `Product` as the representation of a food item
 `Ingredient` as a junction object, containing data abuo the quantity used
@@ -106,7 +107,7 @@ Standard Rails 7 app with API.
 API is versioned to allow for future growth.
 
 Added Rubocop for styling, RSpec for tests.
-Used repository pattern to host more complex queries, explained why in [./docs/01-repositories_pattern.md](this doc)
+Used repository pattern to host more complex queries, explained why in [./bonne_app_api/docs/01-repositories_pattern.md](this doc)
 
 ### Frontend
 Frontend was made as a standard React singe page app.
@@ -139,3 +140,4 @@ I have made it a monorepo as for small projects with collaborators I have found 
 1. React Snapshots specs with Jest
 2. Adding text search to Food Selection components
 3. Adding CI/CD
+4. Query building in RecipesController could be improved

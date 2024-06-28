@@ -1,6 +1,4 @@
 # Bonne App Petit by Jan Taras
-Pennylane Recruitment Task
-
 ## Task
 [Task Description](https://gist.github.com/quentindemetz/2096248a1e8d362e669350700e1e6add)
 
@@ -121,12 +119,57 @@ I have made a simple trello board for tracking the progress, (and not to forget 
 
 https://trello.com/invite/b/Px0Zsc6H/ATTI2fb78e7d591883891773e8fd4026933b294B293B/bonne-app-petit
 
-## User Driven Design
+## User Driven Design - implemented scenarios
 
 I decided to implement 3 user stories:
+
 1. User searches for recommended recipes from ingredients they have at home
+```
+Given "I am a person working from home, I have eggs, sugar and bananas in the kitchen"
+When "I go to Bonne App Petit, select eggs sugar and bananas from the multiselect"
+Then "Recipes containing the ingredients are displayed"
+And "The order of recipes follows how many of the ingredients they use from the ones using most of my ingredients - I can see it on the Match score"
+```
+
 2. User does not have oven at home, and can only make cold dishes
+```
+Given "I am a person camping, I do cannot cook / start fire in the national park, I have honey and egg"
+When "I go to Bonne App Petit, select honey and egg from the multiselect"
+And "I select checkbox to show only cold dishes"
+Then "Recipes containing the ingredients mentioned are displayed"
+And "The order of recipes follows how many of the ingredients they use - I can see it on the Match score"
+And "Only ingredients that require no cooking are shown - I can see this in `No cooking needed` badge"
+```
 3. User wants to only search for recipes with certain rating
+```
+Given "I am a picky eater, I need only good recipes, I have milk, butter, and sugar in my pantry"
+When "I go to Bonne App Petit, select milk, butter, and sugar from the multiselect"
+And "I select four stars on the minimal rating"
+Then "Recipes containing the ingredients mentioned are displayed"
+And "The order of recipes follows how many of the ingredients they use - I can see it on the Match score"
+And "Only ingredients with 4 or more star rating are shown"
+```
+## User Driven Design - possible future scenarios
+
+4. User wants to only search for recipes that take less than stated amount of time
+```
+Given "I am in a hurry, I need recipes to be done under an hour, I have milk, butter, and sugar in my pantry"
+When "I go to Bonne App Petit, select milk, butter, and sugar from the multiselect"
+And "I select max prep time as 1 hour in the slider"
+Then "Recipes containing the ingredients mentioned are displayed"
+And "The order of recipes follows how many of the ingredients they use - I can see it on the Match score"
+And "All the recipes have at most 60 minutes prep time"
+```
+
+5. User wants to only search vegan recipes
+```
+Given "I am vegan, I need only good recipes, I have sugar, banana, and flour in my fridge"
+When "I go to Bonne App Petit, select sugar, banana, and flour from the multiselect"
+And "I mark Vegan Only checkbox"
+Then "Recipes containing the ingredients mentioned are displayed"
+And "The order of recipes follows how many of the ingredients they use - I can see it on the Match score"
+And "I can see only vegan recipes - vegan badge assures me of that"
+```
 
 ## Culture
 
@@ -141,3 +184,4 @@ I have made it a monorepo as for small projects with collaborators I have found 
 2. Adding text search to Food Selection components
 3. Adding CI/CD
 4. Query building in RecipesController could be improved
+5. Make multiselect with text search option

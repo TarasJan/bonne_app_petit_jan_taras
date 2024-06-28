@@ -15,7 +15,7 @@ export default function FoodFinder() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:3001/api/v1/products');
+        const response = await fetch('/api/v1/products');
         const result = await response.json();
         setFoodOptions(result);
       } catch (error) {
@@ -35,7 +35,7 @@ export default function FoodFinder() {
           min_rating: minimalRating
         })
 
-        const response = await fetch(`http://127.0.0.1:3001/api/v1/recipes/search?${params.toString()}`);
+        const response = await fetch(`/api/v1/recipes/search?${params.toString()}`);
         const result = await response.json();
         setRecipes(result);
       } catch (error) {

@@ -178,7 +178,7 @@ Therefore I have added simple instructions on installing required software, proj
 
 I have made it a monorepo as for small projects with collaborators I have found this pattern to be the most productive.
 
-## Ideas for improvements
+## Ideas for tech improvements
 
 1. React Snapshots specs with Jest
 2. Adding text search to Food Selection components

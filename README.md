@@ -1,4 +1,8 @@
 # Bonne App Petit by Jan Taras
+
+## Demo (run by Selenium)
+![image demo](./bonne_app_api/docs/Bonne_app_demo.gif)
+
 ## Task
 [Task Description](https://gist.github.com/quentindemetz/2096248a1e8d362e669350700e1e6add)
 
@@ -114,6 +118,26 @@ Tailwind was chosen as a styling library.
 
 The React app is built and then served on the root endpoint of the Rails App.
 
+## Automation Specs
+
+In order to make sure the User scenarios are fulfilled I wrote Selenium automation covering 3 simplest cases.
+
+## Setup
+```shell
+bundle install
+```
+
+Also make sure to have Chrome installed ;)
+
+## Run Automation
+
+```shell
+bundle exec rspec
+```
+
+Each spec corresponds to a scenario from:
+https://trello.com/b/Px0Zsc6H/bonne-app-petit
+
 ### Project Tracking
 I have made a simple trello board for tracking the progress, (and not to forget anything ;). I have marked all the commits with the corresponding tickets.
 
@@ -183,6 +207,6 @@ I have made it a monorepo as for small projects with collaborators I have found 
 1. React Snapshots specs with Jest
 2. Adding text search to Food Selection components
 3. Adding CI/CD
-4. Query building in RecipesController could be improved
-5. Make multiselect with text search option
-6. include dry gems for params validation
+4. include dry gems for params validation
+5. DSL for Selenium specs
+6. Fix fronend loading the assets on first run flakiness

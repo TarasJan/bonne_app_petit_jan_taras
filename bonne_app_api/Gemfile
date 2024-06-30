@@ -14,7 +14,7 @@ gem 'pg', '~> 1.1'
 gem 'activerecord-import'
 
 # Serializer for shaping API
-gem "active_model_serializers"
+gem 'active_model_serializers'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '>= 5.0'
@@ -44,6 +44,7 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-  gem "dockerfile-rails", ">= 1.6"
+  gem 'dockerfile-rails', '>= 1.6'
 end
 
+gem 'dry-validation', '~> 1.10'

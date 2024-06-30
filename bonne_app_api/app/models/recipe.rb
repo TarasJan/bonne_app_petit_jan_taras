@@ -7,7 +7,7 @@ class Recipe < ApplicationRecord
   validates :cook_time, :prep_time, numericality: { greater_than_or_equal_to: 0 }
 
   scope :cold, -> { where(cook_time: 0) }
-  scope :with_ratings_better_or_equal_to, ->(rating) {where("ratings >= ?", rating)}
+  scope :with_ratings_better_or_equal_to, ->(rating) { where('ratings >= ?', rating) }
 
   has_many :ingredients
   has_many :products, through: :ingredients

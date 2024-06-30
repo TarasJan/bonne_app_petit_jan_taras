@@ -185,3 +185,4 @@ I have made it a monorepo as for small projects with collaborators I have found 
 3. Adding CI/CD
 4. Query building in RecipesController could be improved
 5. Make multiselect with text search option
+6. include dry gems for params validation

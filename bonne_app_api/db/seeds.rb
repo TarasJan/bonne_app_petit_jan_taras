@@ -2,7 +2,6 @@
 
 SOURCE_FILE = 'tmp/recipes.json'
 
-
 # App hosted on Fly.io offers a subset of the whole data file
 def read_source_data!(limit: 1000)
   file = File.read(SOURCE_FILE)

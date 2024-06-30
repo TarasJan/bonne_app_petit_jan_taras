@@ -4,21 +4,23 @@ module Api
   module V1
     class RecipesController < ApplicationController
       def search
-        render json: recipes.limit(20), status: recipes.empty? ? 404 : 200
+        contract = Recipes::SearchContract.new.call(search_params.to_h)
+
+        if contract.success?
+          render json: recipes.limit(20), status: recipes.empty? ? 404 : 200
+        else
+          render json: contract.errors.to_h, status: 400
+        end
       end
 
       private
 
       def recipes
         query = RecipeRepository.find_for_products(product_ids)
-        if only_cold?
-          query = query.cold
-        end
+        query = query.cold if only_cold?
 
-        if min_rating > 0
-          query = query.with_ratings_better_or_equal_to(min_rating)
-        end
-        
+        query = query.with_ratings_better_or_equal_to(min_rating) if min_rating.positive?
+
         query
       end
 

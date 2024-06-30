@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Hosting of static assets made in React
-  root "home#index"
+  root 'home#index'
 
   # API Dedfinition
   namespace :api do

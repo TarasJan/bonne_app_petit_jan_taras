@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+
+
+
+group :development, :test do
+  gem "selenium-webdriver", "~> 4.22"
+
+  gem "rspec", "~> 3.13"
+
+  gem "dotenv", "~> 3.1"
+
+  # Debuggers
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[mri windows]
+end

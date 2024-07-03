@@ -205,8 +205,9 @@ I have made it a monorepo as for small projects with collaborators I have found 
 ## Ideas for tech improvements
 
 1. React Snapshots specs with Jest
-2. Adding text search to Food Selection components
+2. Adding text search to Food Selection components [done]
 3. Adding CI/CD
-4. include dry gems for params validation
-5. DSL for Selenium specs
+4. include dry gems for params validation [done]
+5. DSL for Selenium specs use cucumber BDD
 6. Fix fronend loading the assets on first run flakiness
+7. Optimize repository queries with explain

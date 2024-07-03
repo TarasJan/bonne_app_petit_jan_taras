@@ -9,8 +9,8 @@ module Recipes
     end
 
     rule(:min_rating) do
-      key.failure('must be greater or equal to 0') if key? && value <= 0
-      key.failure('must be less or equal to 5') if key? && value > 5
+      key.failure('must be greater or equal to 0') if key? && value.to_f < 0
+      key.failure('must be less or equal to 5') if key? && value.to_f > 5
     end
   end
 end

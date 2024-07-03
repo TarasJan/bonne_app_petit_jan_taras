@@ -4,12 +4,11 @@ import { Divider } from "primereact/divider";
 import FoodSelect from "./FoodSelect/FoodSelect";
 import RecipeDeck from "./RecipeDeck/RecipeDeck";
 
-
 export default function FoodFinder() {
   const [foodOptions, setFoodOptions] = useState([]);
   const [userFood, setUserFood] = useState([]);
   const [recipes, setRecipes] = useState([])
-  const [minimalRating, setMinimalRating] = useState(0);
+  const [minimalRating, setMinimalRating] = useState(0.0);
   const [onlyCold, setOnlyCold] = useState(false);
 
   useEffect(() => {

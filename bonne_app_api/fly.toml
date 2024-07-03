@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for bonne-app-api-delicate-fire-1453 on 2024-06-28T11:25:07+02:00
+# fly.toml app configuration file generated for bonne-app-api-holy-flower-6203 on 2024-07-03T11:41:02+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'bonne-app-api-delicate-fire-1453'
-primary_region = 'cdg'
+app = 'bonne-app-api-holy-flower-6203'
+primary_region = 'arn'
 console_command = '/rails/bin/rails console'
 
 [build]

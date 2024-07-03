@@ -8,6 +8,15 @@ import { Rating } from "primereact/rating";
 export default function FoodSelect({food, userFood, setUserFood, setOnlyCold, setMinimalRating, minimalRating}) {
     const [toggle, setToggle] = useState(false)
 
+    const itemTemplate = (option) => {
+        return (
+            <div className="flex align-items-center">
+                <span>{option.name}</span>
+                <span className="text-gray-300">{`(${option.mentions} recipes)`}</span>
+            </div>
+        );
+    };
+
     const onToggleChange = () => {
         setOnlyCold(!toggle)
         setToggle(!toggle)
@@ -17,7 +26,7 @@ export default function FoodSelect({food, userFood, setUserFood, setOnlyCold, se
         <Panel header="Ingredients">
         <div className="card flex justify-content-center flex-row">
             <MultiSelect value={userFood} onChange={(e) => setUserFood(e.value)} options={food} optionLabel="name" display="chip" 
-                placeholder="Select Food you have..." maxSelectedLabels={5} className="w-full md:w-20rem" />
+              filter itemTemplate={itemTemplate}  placeholder="Select Food you have..." maxSelectedLabels={5} className="w-full md:w-20rem" />
         </div>
         <Divider/>
             <p>

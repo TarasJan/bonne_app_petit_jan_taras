@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :product do
-    name { Faker::Food.ingredient }
+    name { SecureRandom.uuid }
 
     trait :with_ingredients do
       transient do

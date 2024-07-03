@@ -7,15 +7,6 @@ RSpec.describe 'Api::V1::Products', type: :request do
     JSON.parse(response.body)
   end
 
-  before do
-    5.times do
-      create(:product, :with_ingredients, ingredient_count: 5)
-    end
-
-    7.times do
-      create(:product, :with_ingredients, ingredient_count: 3)
-    end
-  end
 
   describe 'errors' do
     context 'with zero limit param' do
@@ -45,21 +36,63 @@ RSpec.describe 'Api::V1::Products', type: :request do
   end
 
   describe 'GET /' do
-    it 'responds with 12 most common products' do
-      get '/api/v1/products'
 
-      expect(response).to have_http_status(:ok)
-      expect(parsed_response.size).to eq(12)
-      expect(parsed_response.pluck('mentions').sum).to eq(46)
+    describe "non-search request" do
+      before do
+        5.times do
+          create(:product, :with_ingredients, ingredient_count: 5)
+        end
+    
+        7.times do
+          create(:product, :with_ingredients, ingredient_count: 3)
+        end
+      end
+
+      it 'responds with 12 most common products' do
+        get '/api/v1/products'
+  
+        expect(response).to have_http_status(:ok)
+        expect(parsed_response.size).to eq(12)
+        expect(parsed_response.pluck('mentions').sum).to eq(46)
+      end
+  
+      context 'with limit param' do
+        it 'adjusts number of returned items to limit' do
+          get '/api/v1/products', params: { limit: 5 }
+  
+          expect(response).to have_http_status(:ok)
+          expect(parsed_response.size).to eq(5)
+          expect(parsed_response.pluck('mentions').sum).to eq(25)
+        end
+      end
     end
 
-    context 'with limit param' do
-      it 'adjusts number of returned items to limit' do
-        get '/api/v1/products', params: { limit: 5 }
+    context 'with search param' do
+      it "finds the products matching search string" do
+        let(:kefir) do
+          create(:product, :with_ingredients, name: "kefir", ingredient_count: 2)
+        end
 
-        expect(response).to have_http_status(:ok)
-        expect(parsed_response.size).to eq(5)
-        expect(parsed_response.pluck('mentions').sum).to eq(25)
+        before do
+
+            create(:product, :with_ingredients, name: "sunflower", ingredient_count: 3)
+        end
+
+        it 'adjusts number of returned items to limit' do
+          get '/api/v1/products', params: { search: kefir.name }
+  
+          expect(parsed_response).to match(
+        [
+          {
+            'id' => kefir.id,
+            'name' => kefir.name,
+            'mentions' => 2
+          }
+        ]
+      )
+        end
+
+  
       end
     end
   end

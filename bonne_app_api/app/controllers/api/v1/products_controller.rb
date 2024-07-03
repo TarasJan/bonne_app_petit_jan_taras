@@ -7,7 +7,7 @@ module Api
         contract = Products::IndexContract.new.call(permitted_params.to_h)
 
         if contract.success?
-          render json: ProductRepository.most_common(limit), each_serializer: ProductSerializer
+          render json: products, each_serializer: ProductSerializer
         else
           render json: contract.errors.to_h, status: 400
         end
@@ -15,12 +15,21 @@ module Api
 
       private
 
+      def products
+        query = search? ? ProductRepository.most_common : ProductRepository.search(name: permitted_params[:search])
+        query.limit(limit)
+      end
+
+      def search?
+        permitted_params[:search].present?
+      end
+
       def limit
         permitted_params['limit'] || 100
       end
 
       def permitted_params
-        params.permit(:limit)
+        params.permit(:limit, :search)
       end
     end
   end

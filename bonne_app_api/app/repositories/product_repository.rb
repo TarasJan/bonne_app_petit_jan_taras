@@ -2,12 +2,15 @@
 
 class ProductRepository
   # Fetches products most commonly used in recipes
-  def self.most_common(limit = 10)
+  def self.most_common
     Product
       .joins(:ingredients)
       .group('products.id')
       .select('products.*, COUNT(*) as mentions')
       .order(mentions: :desc)
-      .limit(limit)
+  end
+
+  def self.search(name:)
+    most_common.ransack(name_i_cont: name).result
   end
 end

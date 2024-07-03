@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { useDebounce } from "use-debounce"
 import { Divider } from "primereact/divider";
 
 import FoodSelect from "./FoodSelect/FoodSelect";
@@ -7,14 +8,19 @@ import RecipeDeck from "./RecipeDeck/RecipeDeck";
 export default function FoodFinder() {
   const [foodOptions, setFoodOptions] = useState([]);
   const [userFood, setUserFood] = useState([]);
-  const [recipes, setRecipes] = useState([])
+  const [recipes, setRecipes] = useState([]);
+  const [productSearch, setSearch] = useDebounce("", 500);
   const [minimalRating, setMinimalRating] = useState(0.0);
   const [onlyCold, setOnlyCold] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/v1/products');
+        const params = new URLSearchParams({
+          search: productSearch
+        })
+        
+        const response = await fetch(`/api/v1/products?${params.toString()}`);
         const result = await response.json();
         setFoodOptions(result);
       } catch (error) {
@@ -23,7 +29,7 @@ export default function FoodFinder() {
     };
 
     fetchData();
-  }, []);
+  }, [productSearch]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,6 +58,7 @@ export default function FoodFinder() {
         food = {foodOptions} 
         userFood={userFood} 
         setUserFood={setUserFood}
+        setSearch={setSearch}
         setOnlyCold={setOnlyCold}
         setMinimalRating={setMinimalRating}
         minimalRating={minimalRating}

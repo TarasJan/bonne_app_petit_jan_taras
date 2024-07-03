@@ -5,7 +5,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Divider } from "primereact/divider";
 import { Rating } from "primereact/rating";
 
-export default function FoodSelect({food, userFood, setUserFood, setOnlyCold, setMinimalRating, minimalRating}) {
+export default function FoodSelect({food, userFood, setUserFood, setOnlyCold, setMinimalRating, minimalRating, setSearch}) {
     const [toggle, setToggle] = useState(false)
 
     const itemTemplate = (option) => {
@@ -22,11 +22,19 @@ export default function FoodSelect({food, userFood, setUserFood, setOnlyCold, se
         setToggle(!toggle)
     }
 
+    const onSelectionChange = (e) => {
+        setUserFood(e.value)
+    }
+
+    const onFilter = ({filter}) => {
+        setSearch(filter)
+    }
+
     return (
         <Panel header="Ingredients">
         <div className="card flex justify-content-center flex-row">
-            <MultiSelect value={userFood} onChange={(e) => setUserFood(e.value)} options={food} optionLabel="name" display="chip" 
-              filter itemTemplate={itemTemplate}  placeholder="Select Food you have..." maxSelectedLabels={5} className="w-full md:w-20rem" />
+            <MultiSelect value={userFood} onChange={onSelectionChange} options={food} optionLabel="name" display="chip" 
+              filter onFilter={onFilter} itemTemplate={itemTemplate}  placeholder="Select Food you have..." maxSelectedLabels={5} className="w-full md:w-20rem" />
         </div>
         <Divider/>
             <p>

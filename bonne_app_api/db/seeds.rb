@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 SOURCE_FILE = 'tmp/recipes.json'
 
 # App hosted on Fly.io offers a subset of the whole data file

@@ -16,7 +16,7 @@ module Api
       private
 
       def products
-        query = search? ? ProductRepository.most_common : ProductRepository.search(name: permitted_params[:search])
+        query = search? ? ProductRepository.search(name: permitted_params[:search]) : ProductRepository.most_common
         query.limit(limit)
       end
 

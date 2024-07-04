@@ -20,6 +20,10 @@ RSpec.describe 'Api::V1::Products', type: :request do
   end
 
   describe 'response shape' do
+    before do
+      create(:product, :with_ingredients, ingredient_count: 5)
+    end
+
     it 'has the required fields' do
       get '/api/v1/products', params: { limit: 1 }
 
@@ -68,31 +72,26 @@ RSpec.describe 'Api::V1::Products', type: :request do
     end
 
     context 'with search param' do
-      it "finds the products matching search string" do
-        let(:kefir) do
-          create(:product, :with_ingredients, name: "kefir", ingredient_count: 2)
-        end
+      let(:kefir) do
+        create(:product, :with_ingredients, name: "kefir", ingredient_count: 2)
+      end
 
-        before do
+      before do
+        create(:product, :with_ingredients, name: "sunflower", ingredient_count: 3)
+      end
 
-            create(:product, :with_ingredients, name: "sunflower", ingredient_count: 3)
-        end
+      it 'adjusts number of returned items to limit' do
+        get '/api/v1/products', params: { search: kefir.name }
 
-        it 'adjusts number of returned items to limit' do
-          get '/api/v1/products', params: { search: kefir.name }
-  
-          expect(parsed_response).to match(
-        [
-          {
-            'id' => kefir.id,
-            'name' => kefir.name,
-            'mentions' => 2
-          }
-        ]
-      )
-        end
-
-  
+        expect(parsed_response).to match(
+          [
+            {
+              'id' => kefir.id,
+              'name' => kefir.name,
+              'mentions' => 2
+            }
+          ]
+        )
       end
     end
   end

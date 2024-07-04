@@ -9,6 +9,7 @@
 ## Hosted app
 
 [VERSION WITH SEARCH](https://bonne-app-api-search-1234.fly.dev/)
+
 [DEPRECATED OLD VERSION](https://bonne-app-api-delicate-fire-1453.fly.dev/)
 
 ## Setup

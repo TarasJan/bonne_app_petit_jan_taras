@@ -1,16 +1,13 @@
-# fly.toml app configuration file generated for bonne-app-api-holy-flower-6203 on 2024-07-03T11:41:02+02:00
+# fly.toml app configuration file generated for bonne-app-api-still-waterfall-9573 on 2024-07-04T12:52:43+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'bonne-app-api-holy-flower-6203'
-primary_region = 'arn'
+app = 'bonne-app-api-still-waterfall-9573'
+primary_region = 'waw'
 console_command = '/rails/bin/rails console'
 
 [build]
-
-[deploy]
-  release_command = './bin/rails db:prepare'
 
 [http_service]
   internal_port = 3000
@@ -39,7 +36,3 @@ console_command = '/rails/bin/rails console'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-[[statics]]
-  guest_path = '/rails/public'
-  url_prefix = '/'

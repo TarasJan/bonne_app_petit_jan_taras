@@ -3,11 +3,17 @@ import { Divider } from 'primereact/divider';
 import RecipeCard from "./RecipeCard/RecipeCard";
 import WelcomePanel from "./WelcomePanel/WelcomePanel";
 import DeckFooter from "./DeckFooter/DeckFooter";
+import ContactPanel from "./ContactPanel/ContactPanel";
 
 
 export default function RecipeDeck({recipes, userFood}) {
   if(recipes.length === 0) {
-   return(<WelcomePanel />)
+   return(
+    <>
+    <WelcomePanel />
+    <ContactPanel />
+    </>
+  )
   } else {
     return(
       <>
@@ -17,7 +23,9 @@ export default function RecipeDeck({recipes, userFood}) {
         <Divider/>
         </> 
         ) }
+        
         <DeckFooter/>
+        <ContactPanel />
       </>
     )
   }

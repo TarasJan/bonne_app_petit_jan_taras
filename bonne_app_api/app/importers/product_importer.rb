@@ -8,14 +8,10 @@ class ProductImporter
   end
 
   def call!
-    Product.import(transformed_data, on_duplicate_key_ignore: true)
-  end
+    CSVProducers::Product.new(source_data).produce_csv! unless File.exist?('db/products.csv')
 
-  private
-
-  def transformed_data
-    source_data.pluck('ingredients').flatten.map do |description|
-      DescriptionInterpreter.new(description).with_product_name.call
-    end
+    csv_text = File.read('db/products.csv')
+    csv = CSV.parse(csv_text, headers: true).map(&:to_h)
+    Product.import(csv , on_duplicate_key_ignore: true)
   end
 end

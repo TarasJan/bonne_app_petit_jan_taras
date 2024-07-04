@@ -4,6 +4,7 @@ module Products
   class IndexContract < Dry::Validation::Contract
     params do
       optional(:limit).value(:integer)
+      optional(:search).value(:string)
     end
 
     rule(:limit) do

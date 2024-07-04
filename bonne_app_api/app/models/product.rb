@@ -5,4 +5,8 @@ class Product < ApplicationRecord
 
   has_many :ingredients
   has_many :recipes, through: :ingredients
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 end

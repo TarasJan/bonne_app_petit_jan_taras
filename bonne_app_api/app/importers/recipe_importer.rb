@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class RecipeImporter
-  attr_reader :source_data
+  attr_reader :source_data, :product_map
 
-  def initialize(source_data)
+  def initialize(source_data, product_map)
     @source_data = source_data
+    @product_map = product_map
   end
 
   def call!
@@ -24,7 +25,7 @@ class RecipeImporter
 
       ingredient_data = recipe_data.delete('ingredients').map do |description|
         DescriptionInterpreter.new(description).with_all.call.tap do |ingredient|
-          ingredient[:product_id] = Product.find_or_create_by(name: ingredient.delete(:name)).id
+          ingredient[:product_id] = product_map[ingredient.delete(:name)]
         end
       end
       .uniq do |ingredient|

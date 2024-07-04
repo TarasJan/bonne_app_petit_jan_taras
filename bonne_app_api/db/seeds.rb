@@ -25,7 +25,9 @@ data = read_source_data!
 Rails.logger.info('Seeding Products...')
 
 ProductImporter.new(data).call!
+
+product_map = Product.pluck(:name,:id).to_h
 Rails.logger.info('Seeding Recipes and their Ingredients...')
-RecipeImporter.new(data).call!
+RecipeImporter.new(data, product_map).call!
 
 Rails.logger.info('Seeding database completed successfully')

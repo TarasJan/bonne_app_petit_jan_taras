@@ -1,16 +1,13 @@
-# fly.toml app configuration file generated for bonne-app-api-young-wildflower-4401 on 2024-07-04T09:39:38+02:00
+# fly.toml app configuration file generated for bonne-app-api-still-waterfall-9573 on 2024-07-04T12:52:43+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'bonne-app-api-young-wildflower-4401'
-primary_region = 'arn'
+app = 'bonne-app-api-still-waterfall-9573'
+primary_region = 'waw'
 console_command = '/rails/bin/rails console'
 
 [build]
-
-[deploy]
-  release_command = './bin/rails db:prepare'
 
 [http_service]
   internal_port = 3000
@@ -36,10 +33,6 @@ console_command = '/rails/bin/rails console'
       X-Forwarded-Proto = 'https'
 
 [[vm]]
-  memory = '2gb'
+  memory = '1gb'
   cpu_kind = 'shared'
-  cpus = 2
-
-[[statics]]
-  guest_path = '/rails/public'
-  url_prefix = '/'
+  cpus = 1

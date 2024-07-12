@@ -1,10 +1,14 @@
 # Bonne App Petit by Jan Taras
 
+This is my solution for Pennylane recruitment task. Feel free to use it as a point of reference for your work.
+
 ## Demo (run by Selenium)
 ![image demo](./bonne_app_api/docs/Bonne_app_demo.gif)
 
 ## Task
 [Task Description](https://gist.github.com/quentindemetz/2096248a1e8d362e669350700e1e6add)
+
+
 
 ## Hosted app
 
